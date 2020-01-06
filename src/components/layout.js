@@ -9,8 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
-import "./layout.css"
+import Navigation from "./navigation"
+import Helmet from "react-helmet"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,22 +25,33 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
+      <Helmet
+      // bodyAttributes={{
+      //   class: `theme ${themeClass}`,
+      // }}
       >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        <meta name="title" content={data.title} />
+        {/* <meta name="description" content={config.siteDescription} />
+        <link rel="shortcut icon" type="image/png" href={favicon} /> */}
+      </Helmet>
+      <Navigation
+        menuLinks={[
+          {
+            name: "About me",
+            link: "/me/",
+          },
+          {
+            name: "Articles",
+            link: "/blog/",
+          },
+          {
+            name: "Contact",
+            link: "/contact/",
+          },
+        ]}
+      />
+      <main id="main-content">{children}</main>
+      <footer />
     </>
   )
 }
