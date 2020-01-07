@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Navigation from "./navigation"
 import Helmet from "react-helmet"
+import "../styles/main.scss"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
