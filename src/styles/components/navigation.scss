@@ -4,17 +4,10 @@
   top: 0;
   left: 0;
   z-index: 3;
-  width: 100%;
   background: white;
 
   &.scroll {
     box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
-  }
-
-  .cta {
-    display: flex;
-    align-items: center;
-    margin-right: .75rem;
   }
 
   .nav-container {
@@ -61,7 +54,7 @@
       align-items: center;
       font-size: 1.05rem;
       font-weight: 500;
-      padding: .6rem;
+      padding: 0.6rem;
       margin: 0;
       color: rgba(0, 0, 0, 0.45);
       line-height: 1.2;
@@ -71,60 +64,8 @@
       &:active {
         color: #111;
       }
-
-      &.kofi-button {
-        display: block;
-        padding: 0.6rem 0.6rem 0.4rem;
-        background: $primary-color;
-        border-radius: $border-radius;
-        margin: 0;
-
-        &:hover,
-        &:active,
-        &:focus {
-          background: darken($primary-color, 10%);
-        }
-
-        &:active {
-          transform: scale(0.95);
-        }
-      }
     }
   }
-}
-
-.favicon {
-  height: 23px;
-  width: 23px;
-  min-width: 23px;
-  margin-right: .75rem;
-  margin-bottom: 0;
-}
-
-button.dark-switcher {
-  -webkit-appearance: none;
-  border: 0;
-  margin: 0;
-  padding: 0.75rem 1rem;
-  background: transparent;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.theme-icon {
-  height: 18px;
-  width: 18px;
-  min-width: 18px;
-  margin-bottom: 0;
-}
-
-.kofi {
-  margin: 0;
-  width: 26px;
-  max-width: 26px;
-  min-width: 26px;
 }
 
 @include small-breakpoint {
@@ -135,7 +76,6 @@ button.dark-switcher {
       }
 
       .links a {
-
         &:hover,
         &.active {
           color: #111;
@@ -180,34 +120,5 @@ button.dark-switcher {
         }
       }
     }
-
-    a.donate-button {
-      padding: 0.5rem 1.25rem;
-
-      .text {
-        display: block;
-      }
-    }
-  }
-
-  .kofi {
-    margin: 0;
-    max-width: 32px;
-  }
-
-  .favicon {
-    margin-right: 1rem;
-  }
-
-  button.dark-switcher {
-    margin: 0;
-    font-size: 1.4rem;
-  }
-
-  .theme-icon {
-    height: 22px;
-    width: 22px;
-    min-width: 22px;
-    margin-bottom: 0;
   }
 }
