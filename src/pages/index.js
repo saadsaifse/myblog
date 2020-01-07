@@ -2,19 +2,45 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import GitHubButton from "react-github-btn"
+import PostListing from "../components/postListing"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+    <div className="container">
+      <div className="lead">
+        <div className="elevator">
+          <h1>{`Hey, I'm Saad`}</h1>
+          <p>
+            I'm a tech enthusiast, a seasoned software engineer and a wannabe
+            machine learning engineer.
+          </p>
+          <div className="social-buttons">
+            <GitHubButton
+              href="https://github.com/saadsaifse"
+              data-size="large"
+              data-show-count="true"
+            >
+              saadsaifse
+            </GitHubButton>
+          </div>
+        </div>
+      </div>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
+
+    <div className="container front-page">
+      <section className="section">
+        <h2>
+          Latest Articles
+          <Link to="/blog" className="view-all">
+            View all
+          </Link>
+        </h2>
+        <PostListing simple postEdges={[]} />
+      </section>
+    </div>
   </Layout>
 )
 
