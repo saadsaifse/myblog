@@ -6,14 +6,15 @@ import { formatDate } from "../utils/dateTime"
 
 const PostListing = props => {
   const { postEdges, simple } = { ...props }
+  console.log("post edges", postEdges)
   const postList = postEdges.map(postEdge => {
     return {
-      path: postEdge.node.fields.slug,
+      path: postEdge.node.frontmatter.slug,
       tags: postEdge.node.frontmatter.tags,
       thumbnail: postEdge.node.frontmatter.thumbnail,
       title: postEdge.node.frontmatter.title,
-      date: postEdge.node.fields.date,
-      excerpt: postEdge.node.excerpt,
+      date: postEdge.node.frontmatter.date,
+      excerpt: postEdge.node.frontmatter.excerpt,
       timeToRead: postEdge.node.timeToRead,
       categories: postEdge.node.frontmatter.categories,
     }

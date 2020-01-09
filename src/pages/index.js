@@ -6,9 +6,9 @@ import SEO from "../components/seo"
 import GitHubButton from "react-github-btn"
 import PostListing from "../components/postListing"
 
-const IndexPage = () => {
-  //const { data } = props
-  //const latestPostEdges = data.latest.edges
+const IndexPage = props => {
+  const { data } = props
+  const latestPostEdges = data.latest.edges
   return (
     <Layout>
       <SEO title="Home" />
@@ -17,8 +17,10 @@ const IndexPage = () => {
           <div className="elevator">
             <h1>{`Hey, I'm Saad`}</h1>
             <p>
-              I'm a tech enthusiast, a seasoned software engineer and a wannabe
-              machine learning engineer.
+              I'm an electrical & computer engineer by bachelors and a maps and
+              data guy by masters. A seasoned and passionate software engineer,
+              a hobbyist statistician, data scientist, machine learning and AI
+              enthusiast.
             </p>
             <div className="social-buttons">
               <GitHubButton
