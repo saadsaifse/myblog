@@ -43,7 +43,7 @@ const IndexPage = props => {
               View all
             </Link>
           </h2>
-          <PostListing simple postEdges={[]} />
+          <PostListing simple postEdges={latestPostEdges} />
         </section>
       </div>
     </Layout>
@@ -52,10 +52,15 @@ const IndexPage = props => {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    latest: allMarkdownRemark(limit: 6) {
+    latest: allMarkdownRemark(
+      limit: 6
+      sort: { fields: frontmatter___date, order: DESC }
+      filter: { frontmatter: { template: { eq: "post" } } }
+    ) {
       edges {
         node {
           frontmatter {
+            slug
             title
             tags
             categories

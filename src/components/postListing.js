@@ -6,7 +6,7 @@ import { formatDate } from "../utils/dateTime"
 
 const PostListing = props => {
   const { postEdges, simple } = { ...props }
-  console.log("post edges", postEdges)
+
   const postList = postEdges.map(postEdge => {
     return {
       path: postEdge.node.frontmatter.slug,
@@ -15,7 +15,7 @@ const PostListing = props => {
       title: postEdge.node.frontmatter.title,
       date: postEdge.node.frontmatter.date,
       excerpt: postEdge.node.frontmatter.excerpt,
-      timeToRead: postEdge.node.timeToRead,
+      timeToRead: "",
       categories: postEdge.node.frontmatter.categories,
     }
   })
