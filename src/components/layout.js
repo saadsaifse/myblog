@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
             link: "/me/",
           },
           {
-            name: "Articles",
+            name: "Blog",
             link: "/blog/",
           },
           {
