@@ -18,45 +18,56 @@ const BlogPage = props => {
     filteredPosts: posts,
   })
 
-  const filterPosts = () => {
-    let filteredPosts = state.posts.filter(post =>
+  const { filteredPosts, searchTerm, currentCategories } = state
+  const filterCount = filteredPosts.length
+
+  const onInputChanged = async event => {
+    const newSearchTerm = event.target.value
+    const { searchTerm, posts } = state
+
+    let filtered = posts.filter(post =>
       post.node.frontmatter.title
         .toLowerCase()
-        .includes(state.searchTerm.toLowerCase())
+        .includes(newSearchTerm.toLowerCase())
     )
 
-    if (state.currentCategories.length > 0) {
-      filteredPosts = filteredPosts.filter(
+    setState(prev => ({
+      ...prev,
+      searchTerm: newSearchTerm,
+      filteredPosts: filtered,
+    }))
+  }
+
+  const onCategoryClick = category => {
+    const { currentCategories, searchTerm, posts } = state
+    let newCategories = currentCategories
+    if (!currentCategories.includes(category)) {
+      newCategories.push(category)
+    } else {
+      newCategories = currentCategories.filter(cat => cat !== category)
+    }
+
+    let filtered = posts.filter(post =>
+      post.node.frontmatter.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    )
+
+    if (newCategories.length > 0) {
+      filtered = filtered.filter(
         post =>
           post.node.frontmatter.categories &&
-          state.currentCategories.every(cat =>
+          newCategories.every(cat =>
             post.node.frontmatter.categories.includes(cat)
           )
       )
     }
-    setState({ filteredPosts })
-  }
 
-  const handleChange = event => {
-    const { name, value } = event.target
-    setState({ name: value })
-    filterPosts()
-  }
-
-  const updateCategories = category => {
-    const { currentCategories } = state
-
-    if (!currentCategories.includes(category)) {
-      setState(prevState => ({
-        currentCategories: [...prevState.currentCategories, category],
-      }))
-    } else {
-      setState(prevState => ({
-        currentCategories: prevState.currentCategories.filter(
-          cat => category !== cat
-        ),
-      }))
-    }
+    setState(prev => ({
+      ...prev,
+      currentCategories: newCategories,
+      filteredPosts: filtered,
+    }))
   }
 
   return (
@@ -67,15 +78,12 @@ const BlogPage = props => {
         <h1>Blog</h1>
         <div className="category-container">
           {categories.map(category => {
-            const active = state.currentCategories.includes(category.fieldValue)
+            const active = currentCategories.includes(category.fieldValue)
             return (
               <div
                 className={`category-filter ${active ? "active" : ""}`}
                 key={category.fieldValue}
-                onClick={async () => {
-                  await updateCategories(category.fieldValue)
-                  await filterPosts()
-                }}
+                onClick={() => onCategoryClick(category.fieldValue)}
               >
                 {category.fieldValue}
               </div>
@@ -87,11 +95,11 @@ const BlogPage = props => {
             className="search"
             type="text"
             name="searchTerm"
-            value={state.searchTerm}
+            value={searchTerm}
             placeholder="Type here to filter posts..."
-            onChange={handleChange}
+            onChange={onInputChanged}
           />
-          <div className="filter-count">{state.filteredPosts.length}</div>
+          <div className="filter-count">{filterCount}</div>
         </div>
         <PostListing postEdges={state.filteredPosts} />
       </div>
