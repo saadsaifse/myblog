@@ -17,10 +17,9 @@ const IndexPage = props => {
           <div className="elevator">
             <h1>{`Hey, I'm Saad`}</h1>
             <p>
-              I'm an electrical & computer engineer by bachelors and a maps and
-              data guy by masters. A seasoned and passionate software engineer,
-              a hobbyist statistician, data scientist, machine learning and AI
-              enthusiast.
+              I'm a tech enthusiast. A seasoned and passionate software
+              engineer; who is also hustling to build knowledge in statistics,
+              data science, machine learning and artificial intelligence.
             </p>
             <div className="social-buttons">
               <GitHubButton
