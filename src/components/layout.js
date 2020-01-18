@@ -12,6 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Navigation from "./navigation"
 import Helmet from "react-helmet"
 import "../styles/main.scss"
+import config from "../../site-config"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -35,22 +36,7 @@ const Layout = ({ children }) => {
         {/* <meta name="description" content={config.siteDescription} />
         <link rel="shortcut icon" type="image/png" href={favicon} /> */}
       </Helmet>
-      <Navigation
-        menuLinks={[
-          {
-            name: "About me",
-            link: "/me/",
-          },
-          {
-            name: "Blog",
-            link: "/blog/",
-          },
-          {
-            name: "Contact",
-            link: "/contact/",
-          },
-        ]}
-      />
+      <Navigation menuLinks={config.navigationLinks} />
       <main id="main-content">{children}</main>
       <footer />
     </>

@@ -1,10 +1,10 @@
 import React from "react"
 import Helmet from "react-helmet"
 import { Link, graphql } from "gatsby"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostListing from "../components/postListing"
+import config from "../../site-config"
 
 const BlogPage = props => {
   const { data } = props
@@ -72,7 +72,7 @@ const BlogPage = props => {
 
   return (
     <Layout>
-      {/* <Helmet title={`Blog – ${config.siteTitle}`} /> */}
+      <Helmet title={`Blog – ${config.title}`} />
       <SEO />
       <div className="container">
         <h1>Blog</h1>
