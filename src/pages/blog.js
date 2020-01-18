@@ -1,6 +1,6 @@
 import React from "react"
 import Helmet from "react-helmet"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostListing from "../components/postListing"
@@ -10,7 +10,6 @@ const BlogPage = props => {
   const { data } = props
   const posts = data.posts.edges
   const categories = data.categories.group
-
   const [state, setState] = React.useState({
     searchTerm: "",
     currentCategories: [],
@@ -18,30 +17,9 @@ const BlogPage = props => {
     filteredPosts: posts,
   })
 
-  const { filteredPosts, searchTerm, currentCategories } = state
-  const filterCount = filteredPosts.length
-
-  const onInputChanged = async event => {
+  const onInputChanged = event => {
     const newSearchTerm = event.target.value
-    const { currentCategories, posts } = state
-
-    let filtered
-    if (currentCategories.length > 0) {
-      filtered = posts.filter(
-        post =>
-          post.node.frontmatter.categories &&
-          currentCategories.every(cat =>
-            post.node.frontmatter.categories.includes(cat)
-          )
-      )
-    }
-
-    filtered = posts.filter(post =>
-      post.node.frontmatter.title
-        .toLowerCase()
-        .includes(newSearchTerm.toLowerCase())
-    )
-
+    const filtered = filterPosts(newSearchTerm)
     setState(prev => ({
       ...prev,
       searchTerm: newSearchTerm,
@@ -50,35 +28,48 @@ const BlogPage = props => {
   }
 
   const onCategoryClick = category => {
-    const { currentCategories, searchTerm, posts } = state
+    const { currentCategories } = state
     let newCategories = currentCategories
     if (!currentCategories.includes(category)) {
       newCategories.push(category)
     } else {
       newCategories = currentCategories.filter(cat => cat !== category)
     }
-
-    let filtered = posts.filter(post =>
-      post.node.frontmatter.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
-    )
-
-    if (newCategories.length > 0) {
-      filtered = filtered.filter(
-        post =>
-          post.node.frontmatter.categories &&
-          newCategories.every(cat =>
-            post.node.frontmatter.categories.includes(cat)
-          )
-      )
-    }
-
+    const filtered = filterPosts("", newCategories)
     setState(prev => ({
       ...prev,
       currentCategories: newCategories,
       filteredPosts: filtered,
     }))
+  }
+
+  const filterPosts = (newSearchTerm = "", newCategories = []) => {
+    const { posts, searchTerm, currentCategories } = state
+
+    // filter posts based on new search term
+    let filteredPosts = posts
+    let st = newSearchTerm ? newSearchTerm : searchTerm
+    if (st) {
+      filteredPosts = posts.filter(post =>
+        post.node.frontmatter.title.toLowerCase().includes(st.toLowerCase())
+      )
+    }
+
+    // filter posts based on new categories
+    let categories =
+      newCategories && newCategories.length > 0
+        ? newCategories
+        : currentCategories
+    if (categories && categories.length > 0) {
+      filteredPosts = filteredPosts.filter(
+        post =>
+          post.node.frontmatter.categories &&
+          categories.every(cat =>
+            post.node.frontmatter.categories.includes(cat)
+          )
+      )
+    }
+    return filteredPosts
   }
 
   return (
@@ -89,7 +80,7 @@ const BlogPage = props => {
         <h1>Blog</h1>
         <div className="category-container">
           {categories.map(category => {
-            const active = currentCategories.includes(category.fieldValue)
+            const active = state.currentCategories.includes(category.fieldValue)
             return (
               <div
                 className={`category-filter ${active ? "active" : ""}`}
@@ -106,11 +97,11 @@ const BlogPage = props => {
             className="search"
             type="text"
             name="searchTerm"
-            value={searchTerm}
+            value={state.searchTerm}
             placeholder="Type here to filter posts..."
             onChange={onInputChanged}
           />
-          <div className="filter-count">{filterCount}</div>
+          <div className="filter-count">{state.filteredPosts.length}</div>
         </div>
         <PostListing postEdges={state.filteredPosts} />
       </div>
