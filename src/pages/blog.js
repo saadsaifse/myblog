@@ -23,9 +23,20 @@ const BlogPage = props => {
 
   const onInputChanged = async event => {
     const newSearchTerm = event.target.value
-    const { searchTerm, posts } = state
+    const { currentCategories, posts } = state
 
-    let filtered = posts.filter(post =>
+    let filtered
+    if (currentCategories.length > 0) {
+      filtered = posts.filter(
+        post =>
+          post.node.frontmatter.categories &&
+          currentCategories.every(cat =>
+            post.node.frontmatter.categories.includes(cat)
+          )
+      )
+    }
+
+    filtered = posts.filter(post =>
       post.node.frontmatter.title
         .toLowerCase()
         .includes(newSearchTerm.toLowerCase())

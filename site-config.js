@@ -1,4 +1,4 @@
-export default siteConfig = {
+export default {
   title: "Saad Saif",
   navigationLinks: [
     {
