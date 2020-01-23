@@ -13,6 +13,20 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/content`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/content`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -29,13 +43,6 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/content`,
-      },
-    },
-    {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
@@ -45,16 +52,16 @@ module.exports = {
               maxWidth: 850,
             },
           },
-          "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           {
-            resolve: `gatsby-remark-autolink-headers`,
+            resolve: "gatsby-remark-autolink-headers",
             options: {
-              offsetY: `100`,
+              offsetY: "100",
               maintainCase: false,
               removeAccents: true,
             },
           },
+          "gatsby-remark-prismjs",
         ],
       },
     },

@@ -77,7 +77,7 @@ const BlogPage = props => {
       <Helmet title={`Blog – ${config.title}`} />
       <SEO />
       <div className="container">
-        <h1>Blog</h1>
+        <h1>Articles</h1>
         <div className="category-container">
           {categories.map(category => {
             const active = state.currentCategories.includes(category.fieldValue)
@@ -98,7 +98,7 @@ const BlogPage = props => {
             type="text"
             name="searchTerm"
             value={state.searchTerm}
-            placeholder="Type here to filter posts..."
+            placeholder="Type here to filter articles..."
             onChange={onInputChanged}
           />
           <div className="filter-count">{state.filteredPosts.length}</div>
@@ -109,34 +109,34 @@ const BlogPage = props => {
   )
 }
 
-export const BlogQuery = graphql`
-  query BlogQuery {
-    posts: allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { template: { eq: "post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            slug
-            title
-            tags
-            categories
-            date
-            template
-          }
-          excerpt
-        }
-      }
-    }
-    categories: allMarkdownRemark(limit: 2000) {
-      group(field: frontmatter___categories) {
-        fieldValue
-        totalCount
-      }
-    }
-  }
-`
+// export const BlogQuery = graphql`
+//   query BlogQuery {
+//     posts: allMarkdownRemark(
+//       limit: 2000
+//       sort: { fields: [frontmatter___date], order: DESC }
+//       filter: { frontmatter: { template: { eq: "post" } } }
+//     ) {
+//       edges {
+//         node {
+//           frontmatter {
+//             slug
+//             title
+//             tags
+//             categories
+//             date
+//             template
+//           }
+//           excerpt
+//         }
+//       }
+//     }
+//     categories: allMarkdownRemark(limit: 2000) {
+//       group(field: frontmatter___categories) {
+//         fieldValue
+//         totalCount
+//       }
+//     }
+//   }
+// `
 
 export default BlogPage

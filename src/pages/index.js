@@ -49,28 +49,28 @@ const IndexPage = props => {
   )
 }
 
-export const pageQuery = graphql`
-  query IndexQuery {
-    latest: allMarkdownRemark(
-      limit: 6
-      sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { template: { eq: "post" } } }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            slug
-            title
-            tags
-            categories
-            date
-            template
-          }
-          excerpt
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query IndexQuery {
+//     latest: allMarkdownRemark(
+//       limit: 6
+//       sort: { fields: frontmatter___date, order: DESC }
+//       filter: { frontmatter: { template: { eq: "post" } } }
+//     ) {
+//       edges {
+//         node {
+//           frontmatter {
+//             slug
+//             title
+//             tags
+//             categories
+//             date
+//             template
+//           }
+//           excerpt
+//         }
+//       }
+//     }
+//   }
+// `
 
 export default IndexPage
