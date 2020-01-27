@@ -6,6 +6,7 @@ import SEO from "../components/SEO"
 import config from "../../site-config"
 
 const PageTemplate = props => {
+  console.log(props)
   const { slug } = props.pageContext
   const postNode = props.data.markdownRemark
   const page = postNode.frontmatter
