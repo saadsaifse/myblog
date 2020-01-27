@@ -109,34 +109,34 @@ const BlogPage = props => {
   )
 }
 
-// export const BlogQuery = graphql`
-//   query BlogQuery {
-//     posts: allMarkdownRemark(
-//       limit: 2000
-//       sort: { fields: [frontmatter___date], order: DESC }
-//       filter: { frontmatter: { template: { eq: "post" } } }
-//     ) {
-//       edges {
-//         node {
-//           frontmatter {
-//             slug
-//             title
-//             tags
-//             categories
-//             date
-//             template
-//           }
-//           excerpt
-//         }
-//       }
-//     }
-//     categories: allMarkdownRemark(limit: 2000) {
-//       group(field: frontmatter___categories) {
-//         fieldValue
-//         totalCount
-//       }
-//     }
-//   }
-// `
+export const BlogQuery = graphql`
+  query BlogQuery {
+    posts: allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { template: { eq: "post" } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            slug
+            title
+            tags
+            categories
+            date
+            template
+          }
+          excerpt
+        }
+      }
+    }
+    categories: allMarkdownRemark(limit: 2000) {
+      group(field: frontmatter___categories) {
+        fieldValue
+        totalCount
+      }
+    }
+  }
+`
 
 export default BlogPage

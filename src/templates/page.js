@@ -38,6 +38,8 @@ const PageTemplate = props => {
 export const pageQuery = graphql`
   query GetPageBySlug($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      html
+      timeToRead
       excerpt
       frontmatter {
         title
