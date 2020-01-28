@@ -14,4 +14,6 @@ export default {
       link: "/contact/",
     },
   ],
+  dateFromFormat: "YYYY-MM-DD",
+  dateFormat: "MMMM Do, YYYY",
 }

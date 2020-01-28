@@ -8,6 +8,7 @@ import config from "../../site-config"
 const PageTemplate = props => {
   console.log(props)
   const { slug } = props.pageContext
+  console.log(slug)
   const postNode = props.data.markdownRemark
   const page = postNode.frontmatter
 
@@ -45,6 +46,10 @@ export const pageQuery = graphql`
       frontmatter {
         title
         template
+        slug
+        date
+      }
+      fields {
         slug
         date
       }

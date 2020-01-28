@@ -1,4 +1,5 @@
 ---
+date: 2020-01-09
 title: Contact
 slug: contact
 template: page
