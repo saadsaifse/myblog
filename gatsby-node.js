@@ -27,8 +27,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       slug = `/${parsedFilePath.dir}/`
     }
 
-    console.log(slug)
-
     if (Object.prototype.hasOwnProperty.call(node, "frontmatter")) {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
         slug = `${node.frontmatter.slug}`
@@ -51,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const pagePage = path.resolve("src/templates/page.js")
+    const pageTemplate = path.resolve("src/templates/page.js")
 
     resolve(
       graphql(
@@ -81,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
           if (edge.node.frontmatter.template === "page") {
             createPage({
               path: edge.node.fields.slug,
-              component: pagePage,
+              component: pageTemplate,
               context: {
                 slug: edge.node.fields.slug,
               },
