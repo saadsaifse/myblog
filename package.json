@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "myblog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Blog on software, data science and machine learning",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Saad Saif <msaadsaif5@gmail.com>",
   "dependencies": {
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
@@ -33,7 +33,11 @@
     "prettier": "^1.19.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog",
+    "software",
+    "machine learning",
+    "data science"
   ],
   "license": "MIT",
   "scripts": {
@@ -47,9 +51,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/saadsaifse/myblog"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/saadsaifse/myblog/issues"
   }
 }
