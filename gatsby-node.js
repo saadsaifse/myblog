@@ -50,6 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const pageTemplate = path.resolve("src/templates/page.js")
+    const postTemplate = path.resolve("src/templates/post.js")
 
     resolve(
       graphql(
@@ -80,6 +81,15 @@ exports.createPages = ({ graphql, actions }) => {
             createPage({
               path: edge.node.fields.slug,
               component: pageTemplate,
+              context: {
+                slug: edge.node.fields.slug,
+              },
+            })
+          }
+          if (edge.node.frontmatter.template === "post") {
+            createPage({
+              path: edge.node.fields.slug,
+              component: postTemplate,
               context: {
                 slug: edge.node.fields.slug,
               },
