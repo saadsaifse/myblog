@@ -8,25 +8,52 @@ import config from "../../site-config"
 const PostTemplate = props => {
   const { slug } = props.pageContext
   const postNode = props.data.markdownRemark
-  const page = postNode.frontmatter
+  const post = postNode.frontmatter
+  const twitterShare = `http://twitter.com/share?text=${encodeURIComponent(
+    post.title
+  )}&url=${config.siteUrl}/${post.slug}/&via=saadsaif`
 
-  if (!page.id) {
-    page.id = slug
+  if (!post.id) {
+    post.id = slug
   }
 
   return (
     <Layout>
       <Helmet>
-        <title>{`${page.title} – ${config.title}`}</title>
+        <title>{`${post.title} – ${config.title}`}</title>
       </Helmet>
       <SEO postPath={slug} postNode={postNode} postSEO />
       <div className="container">
-        <article>
-          <header className="page-header">
-            <h1>{page.title}</h1>
+        <article className="single container">
+          <header className={`single-header`}>
+            <div className="flex">
+              <h1>{post.title}</h1>
+              <div className="post-meta">
+                <time className="date">{post.date}</time>/
+                <a
+                  className="twitter-link"
+                  href={twitterShare}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Share
+                </a>
+                /
+                {/* <a
+                  className="github-link"
+                  href={githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Edit ✏️
+                </a> */}
+              </div>
+              {/* <PostTags tags={post.tags} /> */}
+            </div>
           </header>
+
           <div
-            className="page"
+            className="post"
             dangerouslySetInnerHTML={{ __html: postNode.html }}
           />
         </article>
@@ -46,6 +73,8 @@ export const pageQuery = graphql`
         template
         slug
         date
+        categories
+        tags
       }
       fields {
         slug

@@ -201,7 +201,7 @@
 @include small-breakpoint {
   .single-header {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    //grid-template-columns: 180px 1fr;
     margin-bottom: 80px;
 
     h1 {
