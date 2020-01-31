@@ -1,2 +1,3 @@
 import moment from "moment"
-export const formatDate = date => moment.utc(date).format("MMMM Do, YYYY")
+import config from "../../site-config"
+export const formatDate = date => moment.utc(date).format(config.dateFormat)

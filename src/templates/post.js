@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/SEO"
 import config from "../../site-config"
+import { formatDate } from "../utils/dateTime"
 
 const PostTemplate = props => {
   const { slug } = props.pageContext
@@ -29,7 +30,7 @@ const PostTemplate = props => {
             <div className="flex">
               <h1>{post.title}</h1>
               <div className="post-meta">
-                <time className="date">{post.date}</time>/
+                <time className="date">{formatDate(post.date)}</time>/
                 <a
                   className="twitter-link"
                   href={twitterShare}
