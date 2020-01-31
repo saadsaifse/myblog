@@ -1,10 +1,11 @@
-import React, { Component } from "react"
+import React from "react"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/SEO"
 import config from "../../site-config"
 import { formatDate } from "../utils/dateTime"
+import PostTags from "../components/postTags"
 
 const PostTemplate = props => {
   const { slug } = props.pageContext
@@ -49,7 +50,7 @@ const PostTemplate = props => {
                   Edit ✏️
                 </a> */}
               </div>
-              {/* <PostTags tags={post.tags} /> */}
+              <PostTags tags={post.tags} />
             </div>
           </header>
 
