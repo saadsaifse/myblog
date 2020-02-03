@@ -9,7 +9,7 @@ const PostListing = props => {
 
   const postList = postEdges.map(postEdge => {
     return {
-      path: postEdge.node.frontmatter.slug,
+      path: postEdge.node.fields.slug,
       tags: postEdge.node.frontmatter.tags,
       thumbnail: postEdge.node.frontmatter.thumbnail,
       title: postEdge.node.frontmatter.title,

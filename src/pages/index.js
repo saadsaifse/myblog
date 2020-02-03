@@ -66,6 +66,10 @@ export const pageQuery = graphql`
             date
             template
           }
+          fields {
+            slug
+            date
+          }
           excerpt
         }
       }

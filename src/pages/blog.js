@@ -126,6 +126,10 @@ export const BlogQuery = graphql`
             date
             template
           }
+          fields {
+            slug
+            date
+          }
           excerpt
         }
       }
