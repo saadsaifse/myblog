@@ -51,6 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const pageTemplate = path.resolve("src/templates/page.js")
     const postTemplate = path.resolve("src/templates/post.js")
+    const tagTemplate = path.resolve("src/templates/tag.js")
 
     resolve(
       graphql(
@@ -61,6 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   frontmatter {
                     template
+                    tags
                   }
                   fields {
                     slug
@@ -75,6 +77,8 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
+
+        const tags = new Set()
 
         result.data.allMarkdownRemark.edges.forEach(edge => {
           if (edge.node.frontmatter.template === "page") {
@@ -94,7 +98,22 @@ exports.createPages = ({ graphql, actions }) => {
                 slug: edge.node.fields.slug,
               },
             })
+
+            if (edge.node.frontmatter.tags) {
+              edge.node.frontmatter.tags.forEach(tag => {
+                tags.add(tag)
+              })
+            }
           }
+        })
+
+        const tagList = Array.from(tags)
+        tagList.forEach(tag => {
+          createPage({
+            path: `/tags/${kebabCase(tag)}/`,
+            component: tagTemplate,
+            context: { tag },
+          })
         })
       })
     )
