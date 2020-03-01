@@ -7,7 +7,9 @@ template: page
 
 Hi, I'm Saad...
 
-I would love to hear your ideas, concerns, questions, comments, or only a hi! just shoot a quick email to [msaadsaif5@gmail.com](mailto:msaadsaif5[AT]gmail[DOT]com)
+I would love to hear your ideas, concerns, questions, comments, or if you would only like to say hi :)
+
+Just shoot a quick email to [msaadsaif5@gmail.com](mailto:msaadsaif5[AT]gmail[DOT]com)
 
 ### Around the web
 
