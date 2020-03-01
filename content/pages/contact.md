@@ -7,10 +7,11 @@ template: page
 
 Hi, I'm Saad...
 
-If you have any questions, comments, ideas, critiques, or you just want to say hi, don't hesitate to send me an email at [msaadsaif5@gmail.com](mailto:msaadsaif5[AT]gmail[DOT]com)!
+I would love to hear your ideas, concerns, questions, comments, or only a hi! just shoot a quick email to [msaadsaif5@gmail.com](mailto:msaadsaif5[AT]gmail[DOT]com)
 
 ### Around the web
 
 - **GitHub**: [saadsaifse](https://github.com/saadsaifse)
 - **Twitter**: [saadsaifse](https://twitter.com/saadsaifse)
+- **LinkedIn**: [saadsaif](https://www.linkedin.com/in/saadsaif/)
 - **Instagram**: [saadsaifse](https://instagram.com/saadsaifse)
