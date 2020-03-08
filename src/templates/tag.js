@@ -2,7 +2,7 @@ import React from "react"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import PostListing from "../components/PostListing"
+import PostListing from "../components/postListing"
 import config from "../../site-config"
 
 const TagTemplate = props => {

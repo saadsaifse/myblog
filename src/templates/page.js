@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Helmet from "react-helmet"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/SEO"
+import SEO from "../components/seo"
 import config from "../../site-config"
 
 const PageTemplate = props => {
