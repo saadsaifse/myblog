@@ -19,7 +19,8 @@ const BlogPage = props => {
 
   const onInputChanged = event => {
     const newSearchTerm = event.target.value
-    const filtered = filterPosts(newSearchTerm)
+    const { currentCategories } = state
+    const filtered = filterPosts(newSearchTerm, currentCategories)
     setState(prev => ({
       ...prev,
       searchTerm: newSearchTerm,
@@ -28,14 +29,14 @@ const BlogPage = props => {
   }
 
   const onCategoryClick = category => {
-    const { currentCategories } = state
+    const { currentCategories, searchTerm } = state
     let newCategories = currentCategories
     if (!currentCategories.includes(category)) {
       newCategories.push(category)
     } else {
       newCategories = currentCategories.filter(cat => cat !== category)
     }
-    const filtered = filterPosts("", newCategories)
+    const filtered = filterPosts(searchTerm, newCategories)
     setState(prev => ({
       ...prev,
       currentCategories: newCategories,
@@ -44,16 +45,15 @@ const BlogPage = props => {
   }
 
   const filterPosts = (newSearchTerm = "", newCategories = []) => {
-    const { posts, searchTerm } = state
+    const { posts } = state
 
     // filter posts based on new search term
     let filteredPosts = posts
-    let st = newSearchTerm ? newSearchTerm : searchTerm
-    if (st) {
-      filteredPosts = posts.filter(post =>
-        post.node.frontmatter.title.toLowerCase().includes(st.toLowerCase())
-      )
-    }
+    filteredPosts = posts.filter(post =>
+      post.node.frontmatter.title
+        .toLowerCase()
+        .includes(newSearchTerm.toLowerCase())
+    )
 
     // filter posts based on new categories
     filteredPosts = filteredPosts.filter(
