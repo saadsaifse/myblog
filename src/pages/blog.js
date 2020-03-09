@@ -44,7 +44,7 @@ const BlogPage = props => {
   }
 
   const filterPosts = (newSearchTerm = "", newCategories = []) => {
-    const { posts, searchTerm, currentCategories } = state
+    const { posts, searchTerm } = state
 
     // filter posts based on new search term
     let filteredPosts = posts
@@ -56,19 +56,13 @@ const BlogPage = props => {
     }
 
     // filter posts based on new categories
-    let categories =
-      newCategories && newCategories.length > 0
-        ? newCategories
-        : currentCategories
-    if (categories && categories.length > 0) {
-      filteredPosts = filteredPosts.filter(
-        post =>
-          post.node.frontmatter.categories &&
-          categories.every(cat =>
-            post.node.frontmatter.categories.includes(cat)
-          )
-      )
-    }
+    filteredPosts = filteredPosts.filter(
+      post =>
+        post.node.frontmatter.categories &&
+        newCategories.every(cat =>
+          post.node.frontmatter.categories.includes(cat)
+        )
+    )
     return filteredPosts
   }
 
