@@ -9,7 +9,7 @@ export default [
     title: "Image Inpainting",
     source: "https://github.com/saadsaifse/image-inpainting-r",
     description:
-      "R package that does Image Inpainting without leaving R ecosystem.",
+      "R package that does Image Inpainting without leaving R's ecosystem.",
   },
   {
     title: "Bird Image Recognition",
@@ -19,8 +19,7 @@ export default [
   },
   {
     title: "Coastal Erosion Detection",
-    path: "https://github.com/saadsaifse/erosion-data-analysis",
-    source: "https://github.com/taniarascia/mvc/",
+    source: "https://github.com/saadsaifse/erosion-data-analysis",
     description:
       "Quantifying coastal erosion using computer vision and machine learning.",
   },

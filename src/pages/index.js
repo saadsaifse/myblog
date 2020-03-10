@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import GitHubButton from "react-github-btn"
 import PostListing from "../components/postListing"
+import ProjectListing from "../components/projectListing"
+import projects from "../../content/projects"
 
 const IndexPage = props => {
   const { data } = props
@@ -43,6 +45,10 @@ const IndexPage = props => {
             </Link>
           </h2>
           <PostListing simple postEdges={latestPostEdges} />
+        </section>
+        <section className="section">
+          <h2>Open Source Projects</h2>
+          <ProjectListing projects={projects} />
         </section>
       </div>
     </Layout>
